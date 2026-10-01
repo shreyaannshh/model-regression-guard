@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: model-regression-guard
+
+scoring:
+  word-overlap:
+    # Placeholder, not tuned. Scores strictly below this are DRIFTED.
+    # Phase 2 replaces it with a per-case noise floor measured at capture time.
+    drift-threshold: 0.6

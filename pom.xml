@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <!-- Bump to the latest 4.0.x patch before the first push. -->
+        <version>4.0.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.shreyansh</groupId>
+    <artifactId>model-regression-guard</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <name>model-regression-guard</name>
+    <description>Detects silent behaviour changes in LLM providers by replaying a golden set against a captured baseline.</description>
+
+    <properties>
+        <!-- 17 builds on any JDK from 17 up. Switch to 21 once JDK 21 is installed. -->
+        <java.version>17</java.version>
+    </properties>
+
+    <dependencies>
+        <!-- Slice 1 needs only the core starter. Web, validation and HTTP client arrive in later slices. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
