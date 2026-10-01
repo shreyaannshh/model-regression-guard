@@ -165,7 +165,7 @@ The drift threshold is set in `application.yml` as `scoring.word-overlap.drift-t
 **Phase 1, built in slices**
 
 - [x] 1. Project setup, domain types, `WordOverlapScorer` with tests
-- [ ] 2. Property rules with tests
+- [x] 2. Property rules with tests
 - [ ] 3. In-memory store and `/cases` endpoints
 - [ ] 4. `ProviderClient` for one OpenAI-compatible endpoint
 - [ ] 5. Baseline capture and activation

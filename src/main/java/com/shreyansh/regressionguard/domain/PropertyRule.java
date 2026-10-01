@@ -6,7 +6,7 @@ package com.shreyansh.regressionguard.domain;
  * <p>The concrete rules arrive in slice 2. At that point this interface becomes
  * {@code sealed}, so the compiler knows every rule type that exists.
  */
-public interface PropertyRule {
+public sealed interface PropertyRule permits ValidJson, RequiredFields, MaxWords {
 
     /** A stable, readable name, for example "MaxWords(200)". */
     String name();
