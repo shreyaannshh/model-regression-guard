@@ -7,3 +7,11 @@ scoring:
     # Placeholder, not tuned. Scores strictly below this are DRIFTED.
     # Phase 2 replaces it with a per-case noise floor measured at capture time.
     drift-threshold: 0.6
+
+provider:
+  # Any OpenAI-compatible endpoint. Groq by default.
+  base-url: ${PROVIDER_BASE_URL:https://api.groq.com/openai/v1}
+  # Read from the environment. Never put a real key in this file.
+  api-key: ${PROVIDER_API_KEY:}
+  model: ${PROVIDER_MODEL:openai/gpt-oss-20b}
+  timeout: 30s
