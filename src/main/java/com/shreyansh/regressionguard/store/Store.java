@@ -1,5 +1,5 @@
 package com.shreyansh.regressionguard.store;
-
+import com.shreyansh.regressionguard.domain.Run;
 import com.shreyansh.regressionguard.domain.BaselineSet;
 import com.shreyansh.regressionguard.domain.GoldenCase;
 import java.util.List;
@@ -37,4 +37,14 @@ public interface Store {
 
     /** The set runs are compared against, or empty if none has been activated yet. */
     Optional<BaselineSet> activeBaselineSet();
+
+        // ---- runs ----
+
+    /** Saves a finished run. Runs are never updated. */
+    void saveRun(Run run);
+
+    Optional<Run> findRun(String id);
+
+    /** All runs, oldest first. */
+    List<Run> allRuns();
 }

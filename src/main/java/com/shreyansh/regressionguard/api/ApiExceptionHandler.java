@@ -3,6 +3,7 @@ package com.shreyansh.regressionguard.api;
 import com.shreyansh.regressionguard.baseline.NothingCapturedException;
 import com.shreyansh.regressionguard.store.DuplicateIdException;
 import com.shreyansh.regressionguard.store.NotFoundException;
+import com.shreyansh.regressionguard.run.NoActiveBaselineException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
@@ -34,5 +35,10 @@ public class ApiExceptionHandler {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(422), e.getMessage());
         problem.setProperty("skipped", e.skipped());
         return problem;
+    }
+
+    @ExceptionHandler(NoActiveBaselineException.class)
+    public ProblemDetail noActiveBaseline(NoActiveBaselineException e) {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, e.getMessage());
     }
 }

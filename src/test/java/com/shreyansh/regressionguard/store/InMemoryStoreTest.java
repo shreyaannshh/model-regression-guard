@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.shreyansh.regressionguard.domain.Run;
+import com.shreyansh.regressionguard.domain.RunStatus;
+
 import com.shreyansh.regressionguard.domain.BaselineSet;
 import com.shreyansh.regressionguard.domain.GoldenCase;
 import java.time.Instant;
@@ -64,5 +67,12 @@ class InMemoryStoreTest {
     void activatingAnUnknownSetIsNotFound() {
         assertThrows(NotFoundException.class, () -> store.activateBaselineSet("missing"));
         assertTrue(store.activeBaselineSet().isEmpty());
+    }
+    
+    @Test
+    void savedRunCanBeFound(){
+        Instant at = Instant.parse("2026-10-07T10:00:00Z");
+        store.saveRun(new Run("run-1",at, at, "set-1", "model", List.of(), null, 0, RunStatus.INCONCLUSIVE));
+        assertEquals("set-1", store.findRun("run-1").orElseThrow().baselineSetId());
     }
 }

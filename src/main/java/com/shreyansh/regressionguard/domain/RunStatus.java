@@ -1,22 +1,27 @@
 package com.shreyansh.regressionguard.domain;
 
 /**
- * The overall outcome of one run.
+ * The overall outcome of one run. Picked by these rules, first match wins:
  *
- * <p>The order between FAILED and INCONCLUSIVE is still an open design decision
- * (see README, "Open decisions"). The rules that pick a status arrive in slice 6.
+ * <ol>
+ *   <li>Any case BROKEN → FAILED</li>
+ *   <li>Every case ERROR → FAILED (the provider is unusable)</li>
+ *   <li>No case compared against a baseline → INCONCLUSIVE</li>
+ *   <li>Any case DRIFTED or ERROR → WARNING</li>
+ *   <li>Otherwise → PASSED</li>
+ * </ol>
  */
 public enum RunStatus {
 
-    /** Every compared case passed and nothing failed. */
+    /** Every compared case passed, nothing broke, no call failed. */
     PASSED,
 
-    /** At least one case DRIFTED and none failed. Drift warns; it does not block. */
+    /** Something moved or a call failed, but nothing is known to be broken. Drift and blips warn; they don't block. */
     WARNING,
 
-    /** At least one case is BROKEN or ERROR. */
+    /** A case broke a property rule, or the provider failed on every case. */
     FAILED,
 
-    /** Zero cases were actually compared against a baseline, so there is no result to report. */
+    /** Zero cases were compared against a baseline, so there is no result to report. */
     INCONCLUSIVE
 }

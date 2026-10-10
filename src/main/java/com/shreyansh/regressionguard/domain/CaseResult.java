@@ -13,6 +13,7 @@ import java.util.Objects;
  * @param similarity    score against the baseline; null when there was no baseline or no response.
  *                      Still stored for BROKEN cases, but not used in their verdict
  * @param verdict       the single outcome
+ * @param error         why the provider call failed; null unless the verdict is ERROR
  */
 public record CaseResult(
         String caseId,
@@ -20,7 +21,8 @@ public record CaseResult(
         String modelReported,
         List<RuleResult> ruleResults,
         Double similarity,
-        Verdict verdict) {
+        Verdict verdict,
+        String error) {
 
     public CaseResult {
         Objects.requireNonNull(caseId, "caseId");
